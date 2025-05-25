@@ -1053,7 +1053,7 @@ let backhome = new Button(42.5, 70, 15, 10, "rgb(150, 150, 150)", {value:"Home",
   gameState = "menu";
   mouseDown = false;
 });
-let backhome2 = new Button(42.5, 70, 15, 10, "rgb(150, 150, 150)", {value:"Home", font:"Google Sans, monospace", size:20}, "instructions", function() {
+let backhome2 = new Button(42.5, 70, 15, 10, "rgb(150, 150, 150)", {value:"Home", font:"Google Sans", size:20}, "instructions", function() {
   gameState = "menu";
   mouseDown = false;
 });
