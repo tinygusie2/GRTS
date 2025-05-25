@@ -852,7 +852,7 @@ setInterval(function() {
       if (enemies.length <= 0) {
         pain -= 0.02;
         ctx.globalAlpha = -Math.max(pain, -.8);
-        drawText(ctx, "You Win!", canvas.width/2, 50/canvasDivision, 50/canvasDivision, "black", "center", "Georgia");
+        drawText(ctx, "Gehaald!", canvas.width/2, 50/canvasDivision, 50/canvasDivision, "black", "center", "Georgia");
         accelFactor *= .95;
         ctx.globalAlpha = 1;
         if (pain <= -1) {gameState = "menu"; document.exitPointerLock();}
@@ -1027,7 +1027,7 @@ class Button {
 		if (this.isHovering(mouseX, mouseY)) canvas.style.cursor = ("pointer");
 	}
 }
-let play = new Button(40, 72.5, 15, 10, "rgb(150, 150, 150)", {value:"Begin", font:"Courier, monospace", size:20}, "menu", async function() {
+let play = new Button(40, 72.5, 15, 10, "rgb(150, 150, 150)", {value:"Begin", font:"Google Sans, monospace", size:20}, "menu", async function() {
   await canvas.requestPointerLock();
   if (document.pointerLockElement === canvas) {
     resetValues();
@@ -1036,7 +1036,7 @@ let play = new Button(40, 72.5, 15, 10, "rgb(150, 150, 150)", {value:"Begin", fo
     mouseDown = false;
   }
 });
-let resume = new Button(40, 60, 15, 10, "rgb(150, 150, 150)", {value:"Ga door", font:"Courier, monospace", size:20}, "menu", async function() {
+let resume = new Button(40, 60, 15, 10, "rgb(150, 150, 150)", {value:"Ga door", font:"Google Sans, monospace", size:20}, "menu", async function() {
   await canvas.requestPointerLock();
   if (document.pointerLockElement === canvas) {
     gameState = "playing";
@@ -1044,20 +1044,16 @@ let resume = new Button(40, 60, 15, 10, "rgb(150, 150, 150)", {value:"Ga door", 
   }
 });
 resume.visible = false;
-let credits = new Button(51.5, 85, 15, 10, "rgb(150, 150, 150)", {value:"Credits", font:"Courier, monospace", size:20}, "menu", function() {
+let credits = new Button(51.5, 85, 15, 10, "rgb(150, 150, 150)", {value:"Credits", font:"Google Sans, monospace", size:20}, "menu", function() {
   gameState = "credits";
   mouseDown = false;
 });
-let instructions = new Button(29.5, 85, 15, 10, "rgb(150, 150, 150)", {value:"Instructies", font:"Courier, monospace", size:20}, "menu", function() {
-  gameState = "instructions";
-  mouseDown = false;
-});
 
-let backhome = new Button(42.5, 70, 15, 10, "rgb(150, 150, 150)", {value:"Home", font:"Courier, monospace", size:20}, "credits", function() {
+let backhome = new Button(42.5, 70, 15, 10, "rgb(150, 150, 150)", {value:"Home", font:"Google Sans, monospace", size:20}, "credits", function() {
   gameState = "menu";
   mouseDown = false;
 });
-let backhome2 = new Button(42.5, 70, 15, 10, "rgb(150, 150, 150)", {value:"Home", font:"Courier, monospace", size:20}, "instructions", function() {
+let backhome2 = new Button(42.5, 70, 15, 10, "rgb(150, 150, 150)", {value:"Home", font:"Google Sans, monospace", size:20}, "instructions", function() {
   gameState = "menu";
   mouseDown = false;
 });
