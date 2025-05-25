@@ -40,7 +40,7 @@ function resetValues() {
   gun = pistol;
   weaponTraits = new Map();
   weaponTraits.set(pistol, {
-    name: "Pistol",
+    name: "Pistool",
     automatic: false,
     runningBloom: 1.5,
     defaultBloom: Math.PI/50,
@@ -71,7 +71,7 @@ function resetValues() {
     reloadTime: 40,
   });
   weaponTraits.set(shotgun, {
-    name: "Shotgun",
+    name: "Pump",
     automatic: true,
     runningBloom: 0.2,
     defaultBloom: 0*Math.PI/70,
@@ -883,9 +883,9 @@ setInterval(function() {
     ctx.beginPath();
     ctx.roundRect(canvas.width/2-300/canvasDivision, canvas.height/2-200/canvasDivision, 600/canvasDivision, 215/canvasDivision, 5);
     ctx.fill();
-    drawText(ctx, "Paused!", canvas.width/2, canvas.height/2-140/canvasDivision, 60/canvasDivision, "black", "center", "Helvetica");
-    drawText(ctx, "Click anywhere to resume", canvas.width/2, canvas.height/2-80/canvasDivision, 40/canvasDivision, "black", "center", "Helvetica");
-    drawText(ctx, "Press 'm' to return to the menu", canvas.width/2, canvas.height/2-30/canvasDivision, 40/canvasDivision, "black", "center", "Helvetica");
+    drawText(ctx, "Pauze.", canvas.width/2, canvas.height/2-140/canvasDivision, 60/canvasDivision, "black", "center", "Helvetica");
+    drawText(ctx, "Klik ergens om door te gaan.", canvas.width/2, canvas.height/2-80/canvasDivision, 40/canvasDivision, "black", "center", "Helvetica");
+    drawText(ctx, "M voor het menu.", canvas.width/2, canvas.height/2-30/canvasDivision, 40/canvasDivision, "black", "center", "Helvetica");
   }
   if ((gameState === "playing" || gameState === "paused") && keys["m"]) {
     //return to menu if m is pressed
@@ -919,12 +919,12 @@ setInterval(function() {
   
   if (gameState === "credits") {
     drawText(ctx, "Credits", canvas.width/2, 30, 40, "black", "center", "Helvetica");
-    drawText(ctx, "Valley Terrain by Zsky [CC-BY] (https://creativecommons.org/licenses/by/3.0/)", canvas.width/2, 70, 20, "black", "center", "Trebuchet MS");
+    drawText(ctx, "Valley Terrain door Zsky [CC-BY] (https://creativecommons.org/licenses/by/3.0/)", canvas.width/2, 70, 20, "black", "center", "Trebuchet MS");
     drawText(ctx, "via Poly Pizza (https://poly.pizza/m/u78ByZHYB2); modified", canvas.width/2, 92, 20, "black", "center", "Trebuchet MS");
   }
-  if (gameState === "instructions") {
-    drawText(ctx, "Instructions", canvas.width/2, 30, 40, "black", "center", "Helvetica");
-    drawText(ctx, "WASD/space to move, mouse to shoot, keys 1-4 to select gun, q/RMB to aim, shift to walk, and r to reload", canvas.width/2, 70, 20, "black", "center", "Trebuchet MS");
+  if (gameState === "instructies") {
+    drawText(ctx, "Instructies", canvas.width/2, 30, 40, "black", "center", "Helvetica");
+    drawText(ctx, "WASD/spatie om te bewegen, muis om te schieten, nummers om guns te kiezen, q/RMK om te richten, shift om te lopen, en r voor reload", canvas.width/2, 70, 20, "black", "center", "Trebuchet MS");
   }
 }, 30);
 
@@ -1027,7 +1027,7 @@ class Button {
 		if (this.isHovering(mouseX, mouseY)) canvas.style.cursor = ("pointer");
 	}
 }
-let play = new Button(40, 72.5, 15, 10, "rgb(150, 150, 150)", {value:"Begin Mission", font:"Courier, monospace", size:20}, "menu", async function() {
+let play = new Button(40, 72.5, 15, 10, "rgb(150, 150, 150)", {value:"Begin", font:"Courier, monospace", size:20}, "menu", async function() {
   await canvas.requestPointerLock();
   if (document.pointerLockElement === canvas) {
     resetValues();
@@ -1036,7 +1036,7 @@ let play = new Button(40, 72.5, 15, 10, "rgb(150, 150, 150)", {value:"Begin Miss
     mouseDown = false;
   }
 });
-let resume = new Button(40, 60, 15, 10, "rgb(150, 150, 150)", {value:"Resume Mission", font:"Courier, monospace", size:20}, "menu", async function() {
+let resume = new Button(40, 60, 15, 10, "rgb(150, 150, 150)", {value:"Ga door", font:"Courier, monospace", size:20}, "menu", async function() {
   await canvas.requestPointerLock();
   if (document.pointerLockElement === canvas) {
     gameState = "playing";
@@ -1048,24 +1048,11 @@ let credits = new Button(51.5, 85, 15, 10, "rgb(150, 150, 150)", {value:"Credits
   gameState = "credits";
   mouseDown = false;
 });
-let instructions = new Button(29.5, 85, 15, 10, "rgb(150, 150, 150)", {value:"Instructions", font:"Courier, monospace", size:20}, "menu", function() {
+let instructions = new Button(29.5, 85, 15, 10, "rgb(150, 150, 150)", {value:"Instructies", font:"Courier, monospace", size:20}, "menu", function() {
   gameState = "instructions";
   mouseDown = false;
 });
-let github = new Button(87, 88, 12, 10, "rgb(150, 150, 150)", {value:"Github", font:"Courier, monospace", size:20}, "menu", function() {
-  let link = document.createElement("a");
-  link.href = "https://github.com/gosoccerboy5/entry-breach";
-  link.target = "_blank";
-  link.click();
-  mouseDown = false;
-});
-let planeBattle = new Button(1, 88, 12, 10, "rgb(150, 150, 150)", {value:"Plane Battle", font:"Courier, monospace", size:20}, "menu", function() {
-  let link = document.createElement("a");
-  link.href = "https://gosoccerboy5.github.io/plane-battle/";
-  link.target = "_blank";
-  link.click();
-  mouseDown = false;
-});
+
 let backhome = new Button(42.5, 70, 15, 10, "rgb(150, 150, 150)", {value:"Home", font:"Courier, monospace", size:20}, "credits", function() {
   gameState = "menu";
   mouseDown = false;
